@@ -1,0 +1,26 @@
+{
+  "name": "social-media-mental-health",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./dist/server.js",
+  "scripts": {
+    "start": "tsc && nodemon server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "db-migrate-pg": "^1.2.2",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "fs": "^0.0.1-security",
+    "nodemon": "^2.0.20",
+    "pg-promise": "^11.0.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.15",
+    "@types/express-serve-static-core": "^4.17.32",
+    "@types/node": "^18.11.18",
+    "typescript": "^4.9.4"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "pg": {
+    "driver": "pg",
+    "user": "postgres",
+    "password": "postgres",
+    "host": "localhost",
+    "database": "lithium",
+    "port": 5432
+  }
+}
