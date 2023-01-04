@@ -64,9 +64,9 @@ namespace postsHandler {
     return async function (req: Request, res: Response) : Promise<void> {
       const postId = parseInt(req.params.postId);
       try {
-        const response = await postRepository.createCommentOnThread(postId);
-        if (response) {
-          res.sendStatus(204)
+        const comments = await postRepository.getCommentsOnPost(postId);
+        if (comments) {
+          res.json({ comments }).status(200);
         } else {
           res.sendStatus(400);
         }
@@ -84,6 +84,42 @@ namespace postsHandler {
       const commentId = parseInt(req.params.commentId);
       try {
         const response = await postRepository.createCommentOnThread(userId, postId, commentId, text);
+        if (response) {
+          res.sendStatus(204)
+        } else {
+          res.sendStatus(400);
+        }
+      } catch (error) {
+        console.log(error);
+        res.sendStatus(500);
+      }
+    }
+  }
+
+  export function incrementPostUpvote(postRepository: PostRepository) : Function {
+    return async function (req: Request, res: Response) : Promise<void> {
+      const postId = parseInt(req.params.postId);
+      const { userId } = req.body;
+      try {
+        const response = await postRepository.incrementPostUpvote(userId, postId);
+        if (response) {
+          res.sendStatus(204)
+        } else {
+          res.sendStatus(400);
+        }
+      } catch (error) {
+        console.log(error);
+        res.sendStatus(500);
+      }
+    }
+  }
+
+  export function decrementPostUpvote(postRepository: PostRepository) : Function {
+    return async function (req: Request, res: Response) : Promise<void> {
+      const postId = parseInt(req.params.postId);
+      const { userId } = req.body;
+      try {
+        const response = await postRepository.decrementPostUpvote(userId, postId);
         if (response) {
           res.sendStatus(204)
         } else {

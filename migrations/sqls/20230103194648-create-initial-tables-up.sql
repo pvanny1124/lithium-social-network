@@ -28,3 +28,27 @@ CREATE TABLE IF NOT EXISTS comments (
   downvotes int default 0,
   created_at timestamp default current_timestamp
 );
+
+CREATE TABLE IF NOT EXISTS comments_upvotes (
+  id BIGSERIAL NOT NULL PRIMARY KEY,
+  user_id int REFERENCES users(id) NOT NULL,
+  comment_id int REFERENCES comments(id) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS comments_downvotes (
+  id BIGSERIAL NOT NULL PRIMARY KEY,
+  user_id int REFERENCES users(id) NOT NULL,
+  comment_id int REFERENCES comments(id) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS posts_upvotes (
+  id BIGSERIAL NOT NULL PRIMARY KEY,
+  user_id int REFERENCES users(id) NOT NULL,
+  post_id int REFERENCES posts(id) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS posts_downvotes (
+  id BIGSERIAL NOT NULL PRIMARY KEY,
+  user_id int REFERENCES users(id) NOT NULL,
+  post_id int REFERENCES posts(id) NOT NULL
+);

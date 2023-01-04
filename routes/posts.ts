@@ -27,5 +27,13 @@ export function postsRouting(db: string, secret: number): Router {
     postsHandler.createCommentOnThread(postsRepository)
   );
 
+  router.post("/posts/:postId/upvote", 
+    postsHandler.incrementPostUpvote(postsRepository)
+  );
+
+  router.post("/posts/:postId/downvote", 
+    postsHandler.decrementPostUpvote(postsRepository)
+  );
+
   return router;
 }
